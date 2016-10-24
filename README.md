@@ -15,7 +15,7 @@ $ npm i -S scss-symbols-parser
 Primarily, this module is designed to work with [vscode-scss](https://github.com/mrmlnc/vscode-scss) extension.
 
   * Dependencies free.
-  * Returns document Variables, Mixins and Imports.
+  * Returns document Variables, Mixins, Functions and Imports.
   * Very fast.
 
 ## Usage
@@ -47,7 +47,7 @@ const symbols = symbolsParser.parseSymbols('$a: 1;');
   * parameters: `variable[]`
   * offset: `number`
 
-**functions**
+**function**
 
   * name: `string`
   * parameters: `variable[]`
