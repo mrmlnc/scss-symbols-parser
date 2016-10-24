@@ -23,10 +23,10 @@ Primarily, this module is designed to work with [vscode-scss](https://github.com
 ```js
 const symbolsParser = require('scss-symbols-parser');
 
-const symbols = symbolsParser.parseSymbols('@a: 1;');
+const symbols = symbolsParser.parseSymbols('$a: 1;');
 // console.log(symbols);
 // {
-//   variables: [ { name: '@a', value: '1', offset: 0 } ],
+//   variables: [ { name: '$a', value: '1', offset: 0 } ],
 //   mixins: [],
 //   imports: []
 // }
