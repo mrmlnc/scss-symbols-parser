@@ -171,13 +171,19 @@ export function parseSymbols(text: string) {
 			const name = token[1];
 
 			let value = '';
-			while (pos < length && tokens[pos][0] !== ';') {
+			while (pos < length) {
 				token = tokens[pos];
 
-				if (token[0] === 'word' || token[0] === 'at-word' || token[0] === 'string' || token[0] === 'space' || token[0] === 'brackets') {
+				if (token[0] === ';') {
+					break;
+				} else if (token[0] === 'word' || token[0] === 'at-word' || token[0] === 'string' || token[0] === 'space' || token[0] === 'brackets') {
 					value += token[1];
 				}
 				pos++;
+			}
+
+			if (pos === length && token[0] !== ';') {
+				continue;
 			}
 
 			variables.push({
