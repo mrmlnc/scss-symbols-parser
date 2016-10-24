@@ -13,26 +13,26 @@ describe('Parser', () => {
 		const { variables } = parseSymbols(data);
 
 		const expected = [
-			{ name: 'a', value: '1', offset: 8 },
-			{ name: 'b', value: '$a', offset: 15 },
-			{ name: 'c', value: 'text', offset: 23 },
-			{ name: 'd', value: '"text"', offset: 33 },
-			{ name: 'e', value: '"$test:1;"', offset: 45 },
+			{ name: '$a', value: '1', offset: 8 },
+			{ name: '$b', value: '$a', offset: 15 },
+			{ name: '$c', value: 'text', offset: 23 },
+			{ name: '$d', value: '"text"', offset: 33 },
+			{ name: '$e', value: '"$test:1;"', offset: 45 },
 			{
-				name: 'f',
+				name: '$f',
 				value: '"{ content" "\\{ content \\}" "\\{ content }" "\\" content \\}" "\\\\" "@{c}"',
 				offset: 61
 			},
-			{ name: 'g', value: 'rgba(255, 0, 0, 0.5)', offset: 137 },
-			{ name: 'h', value: '1, 2', offset: 163 },
-			{ name: 'i', value: '1 2 3', offset: 173 },
-			{ name: 'j', value: '$a !important', offset: 188 },
-			{ name: 'k', value: '\\\\', offset: 207 },
-			{ name: 'l', value: '\\\\\\test', offset: 215 },
-			{ name: 'n', value: 'end', offset: 250 },
-			{ name: 'q', value: '1', offset: 319 },
+			{ name: '$g', value: 'rgba(255, 0, 0, 0.5)', offset: 137 },
+			{ name: '$h', value: '1, 2', offset: 163 },
+			{ name: '$i', value: '1 2 3', offset: 173 },
+			{ name: '$j', value: '$a !important', offset: 188 },
+			{ name: '$k', value: '\\\\', offset: 207 },
+			{ name: '$l', value: '\\\\\\test', offset: 215 },
+			{ name: '$n', value: 'end', offset: 250 },
+			{ name: '$q', value: '1', offset: 319 },
 			{
-				name: 'map',
+				name: '$map',
 				value: '(key1: value1, key2: value2, key3: value3)',
 				offset: 363
 			}

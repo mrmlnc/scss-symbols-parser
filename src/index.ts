@@ -168,7 +168,7 @@ export function parseSymbols(text: string) {
 			offset = token[2];
 			pos++;
 
-			const name = token[1].substr(1);
+			const name = token[1];
 
 			let value = '';
 			while (pos < length && tokens[pos][0] !== ';') {
