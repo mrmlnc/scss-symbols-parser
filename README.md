@@ -28,6 +28,7 @@ const symbols = symbolsParser.parseSymbols('$a: 1;');
 // {
 //   variables: [ { name: '$a', value: '1', offset: 0 } ],
 //   mixins: [],
+//   functions: [],
 //   imports: []
 // }
 ```
