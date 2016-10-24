@@ -1,0 +1,29 @@
+// test
+$a: 1;
+$b: $a;
+$c: text;
+$d: "text";
+$e: "$test:1;";
+$f: "{ content" "\{ content \}" "\{ content }" "\" content \}" "\\" "@{c}";
+$g: rgba(255, 0, 0, 0.5);
+$h: 1, 2;
+$i: 1 2 3;
+				$j: $a !important;
+$k: \\;
+$l: \\\test;
+.skip {
+	$m: skip;
+}
+	$n: end;
+.skip:not(:first-child) {
+	$o: 1;
+
+	.nested {
+		$p: 1;
+	}
+}
+$q: 1;
+@media (min-width: 1px) {
+	// code
+}
+$map: (key1: value1, key2: value2, key3: value3);

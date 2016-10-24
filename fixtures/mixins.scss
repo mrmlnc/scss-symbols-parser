@@ -1,0 +1,24 @@
+.a {
+	content: "";
+}
+
+@mixin b() {
+	// code
+}
+@mixin
+c($a, $b,$c: rgba(0,0,0,0)) {
+	// code
+}
+@mixin d
+() {
+	// code
+}
+@mixin e($a: "{()}") { content: ""; }
+
+.f {
+	@mixin g() {
+		content: 1;
+	}
+
+	@include g();
+}

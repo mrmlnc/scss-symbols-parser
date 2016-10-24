@@ -1,0 +1,41 @@
+{
+  "name": "scss-symbols-parser",
+  "version": "1.0.0",
+  "description": "A very simple and fast SCSS Symbols parser",
+  "license": "MIT",
+  "repository": "mrmlnc/scss-symbols-parser",
+  "author": {
+    "name": "Denis Malinochkin",
+    "url": "canonium.com"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "pretest": "rimraf out && tslint src/**/*.ts && tsc",
+    "test": "mocha out/**/*.spec.js",
+    "start": "rimraf out && tsc --watch"
+  },
+  "main": "out/index.js",
+  "typings": "out/index.d.ts",
+  "files": [
+    "out/index.d.ts",
+    "out/index.js",
+    "out/tokenizer.js"
+  ],
+  "keywords": [
+    "scss",
+    "parser",
+    "symbols",
+    "variables",
+    "mixins",
+    "imports"
+  ],
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "tslint": "^3.15.1",
+    "mocha": "^3.1.2",
+    "rimraf": "^2.5.4",
+    "bootstrap-sass": "^3.3.7"
+  }
+}

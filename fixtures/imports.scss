@@ -1,0 +1,7 @@
+@import "foo.scss";
+@import "foo";
+@import "foo.css";
+@import "foo" screen;
+@import url(foo);
+@import "rounded-corners", "text-shadow";
+@import "#{test}.scss";
