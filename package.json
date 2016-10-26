@@ -21,7 +21,8 @@
   "files": [
     "out/index.d.ts",
     "out/index.js",
-    "out/tokenizer.js"
+    "out/tokenizer.js",
+    "out/tokenizer.d.ts"
   ],
   "keywords": [
     "scss",
