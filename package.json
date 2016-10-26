@@ -1,6 +1,6 @@
 {
   "name": "scss-symbols-parser",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A very simple and fast SCSS Symbols parser",
   "license": "MIT",
   "repository": "mrmlnc/scss-symbols-parser",
