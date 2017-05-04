@@ -34,7 +34,7 @@
   ],
   "devDependencies": {
     "typescript": "^2.0.3",
-    "tslint": "^3.15.1",
+    "tslint": "^5.2.0",
     "mocha": "^3.1.2",
     "rimraf": "^2.5.4",
     "bootstrap-sass": "^3.3.7"
