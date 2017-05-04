@@ -1,5 +1,7 @@
 # scss-symbols-parser
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mrmlnc/scss-symbols-parser.svg)](https://greenkeeper.io/)
+
 > A very simple and fast SCSS Symbols parser.
 
 [![Travis Status](https://travis-ci.org/mrmlnc/scss-symbols-parser.svg?branch=master)](https://travis-ci.org/mrmlnc/scss-symbols-parser)
