@@ -12,7 +12,7 @@ describe('Bootstrap', () => {
 
 	it('Files without symbols', () => {
 		let status = true;
-		let files = [];
+		const files = [];
 
 		fs.readdirSync(dir).filter((filename) => {
 			return !/mixins|forms|type|variables|theme/.test(filename);

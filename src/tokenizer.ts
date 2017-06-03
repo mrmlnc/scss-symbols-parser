@@ -51,12 +51,12 @@ const RE_WORD_END = /[ \n\t\r\f\(\)\{\}:;@!'"\\\]\[#]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\\\/\("'\n]/;
 
 export default function tokenizer(text: string) {
-	let tokens = [];
+	const tokens = [];
 
 	let code, next, quote, lines, last, content, escape,
 		nextLine, nextOffset, escaped, escapePos, prev, n;
 
-	let length = text.length;
+	const length = text.length;
 	let offset = -1;
 	let line = 1;
 	let pos = 0;
@@ -283,4 +283,4 @@ export default function tokenizer(text: string) {
 	}
 
 	return tokens;
-};
+}

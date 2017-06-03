@@ -77,9 +77,9 @@ describe('Parser', () => {
 
 		const expected = [
 			{
-				name: "grid-width",
+				name: 'grid-width',
 				parameters: [
-					{ name: "$n", value: null, offset: 21 }
+					{ name: '$n', value: null, offset: 21 }
 				],
 				offset: 0
 			}

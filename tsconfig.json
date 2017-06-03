@@ -2,13 +2,13 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
-		"moduleResolution": "classic",
+		"moduleResolution": "node",
 		"rootDir": "src",
 		"outDir": "out",
-		"noLib": false,
-		"noImplicitAny": false,
-		"experimentalDecorators": true,
-		"removeComments": true,
+		"forceConsistentCasingInFileNames": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"pretty": true,
 		"declaration": true
 	}
 }

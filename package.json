@@ -11,11 +11,6 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "scripts": {
-    "pretest": "rimraf out && tslint src/**/*.ts && tsc",
-    "test": "mocha out/**/*.spec.js",
-    "start": "rimraf out && tsc --watch"
-  },
   "main": "out/index.js",
   "typings": "out/index.d.ts",
   "files": [
@@ -33,10 +28,19 @@
     "imports"
   ],
   "devDependencies": {
-    "typescript": "^2.3.4",
-    "tslint": "^5.4.2",
+    "bootstrap-sass": "^3.3.7",
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
-    "bootstrap-sass": "^3.3.7"
+    "tslint": "^5.4.2",
+    "tslint-config-xo": "^1.2.0",
+    "typescript": "^2.3.4"
+  },
+  "scripts": {
+    "clean": "rimraf out",
+    "lint": "tslint src/**/*.ts",
+    "compile": "tsc",
+    "test": "mocha out/**/*.spec.js",
+    "build": "npm run clean && npm run lint && npm run compile && npm test",
+    "watch": "npm run clean && npm run lint && npm run compile -- --watch"
   }
 }

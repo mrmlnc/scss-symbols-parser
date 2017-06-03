@@ -58,10 +58,10 @@ function makeMixinParameters(text: string, offset): IVariable[] {
 function parseSymbols(text: string) {
 	const tokens = tokenizer(text);
 
-	let variables: IVariable[] = [];
-	let mixins: IMixin[] = [];
-	let functions: IFunction[] = [];
-	let imports: IImport[] = [];
+	const variables: IVariable[] = [];
+	const mixins: IMixin[] = [];
+	const functions: IFunction[] = [];
+	const imports: IImport[] = [];
 
 	let token;
 	let pos = 0;
@@ -222,4 +222,4 @@ function parseSymbols(text: string) {
 export {
 	parseSymbols,
 	tokenizer
-}
+};
