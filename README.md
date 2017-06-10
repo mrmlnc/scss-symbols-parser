@@ -16,6 +16,7 @@ Primarily, this module is designed to work with [vscode-scss](https://github.com
 
   * Dependencies free.
   * Returns document Variables, Mixins, Functions and Imports.
+  * Tolerant to errors.
   * Very fast.
 
 ## Usage
@@ -57,7 +58,7 @@ const symbols = symbolsParser.parseSymbols('$a: 1;');
 
   * filepath: `string`
   * modes: `string[]`
-  * dynamic: `boolean` (filepath contains `#`, `{` or `}`)
+  * dynamic: `boolean` (filepath contains `#`, `{` or `}` or filepaths contains `//` – URLs)
   * css: `boolean` (filepath contains `css` extension or mode)
 
 ## Changelog
