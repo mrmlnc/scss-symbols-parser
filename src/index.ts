@@ -20,9 +20,7 @@ export interface IMixin {
 	offset: number;
 }
 
-export interface IFunction extends IMixin {
-	// :)
-}
+export type IFunction = IMixin;
 
 const IMPORT_PATH_SEPARATOR_RE = /,\s*/;
 const IMPORT_PATH_RE = /['"](.*)['"]/;
