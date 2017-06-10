@@ -2,7 +2,25 @@
 
 import tokenizer from './tokenizer';
 
-import { IVariable, IMixin, IFunction, IImport } from './types';
+export interface IVariable {
+	name: string;
+	value: string;
+	offset: number;
+}
+
+export interface IImport {
+	filepath: string;
+	dynamic: boolean;
+	css: boolean;
+}
+
+export interface IMixin {
+	name: string;
+	parameters: IVariable[];
+	offset: number;
+}
+
+export type IFunction = IMixin;
 
 const IMPORT_PATH_SEPARATOR_RE = /,\s*/;
 const IMPORT_PATH_RE = /['"](.*)['"]/;
