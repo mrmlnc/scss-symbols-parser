@@ -24,6 +24,14 @@ export interface IFunction extends IMixin {
 	// :)
 }
 
+const IMPORT_PATH_SEPARATOR_RE = /,\s*/;
+const IMPORT_PATH_RE = /['"](.*)['"]/;
+const DYNAMIC_IMPORT_RE = /[#{}\*]/;
+const CSS_IMPORT_RE = /\.css$/;
+
+const PARAMETER_SEPARATOR_RE = /([,;]\s*)(?=\$)/;
+const PARAMETER_RE = /([\n\t\r\s]*)(\$[\w-]+)(?:\s*:\s*(.*))?/;
+
 function makeMixinParameters(text: string, offset): IVariable[] {
 	const variables: IVariable[] = [];
 	if (!text || text === '()') {
@@ -32,20 +40,20 @@ function makeMixinParameters(text: string, offset): IVariable[] {
 
 	// Remove parenthesis
 	text = text.slice(1, text.length - 1);
-	const params = text.split(/([,;]\s*)(?=\$)/);
+	const params = text.split(PARAMETER_SEPARATOR_RE);
 
 	// Skip `(`
 	offset += 1;
 
 	for (let i = 0; i < params.length; i = i + 2) {
 		const token = params[i];
-		const stat = token.match(/([\n\t\r\s]*)(\$[\w-]+)(?:\s*:\s*(.*))?/);
+		const match = token.match(PARAMETER_RE);
 
-		offset += stat[1].length || 0;
+		offset += match[1].length || 0;
 
 		variables.push({
-			name: stat[2],
-			value: stat[3] ? stat[3].trim() : null,
+			name: match[2],
+			value: match[3] ? match[3].trim() : null,
 			offset
 		});
 
@@ -86,16 +94,16 @@ function parseSymbols(text: string) {
 				pos++;
 			}
 
-			str.split(/,\s*/).forEach((x) => {
-				const stat = x.match(/['"](.*)['"]/);
-				if (!stat) {
+			str.split(IMPORT_PATH_SEPARATOR_RE).forEach((x) => {
+				const match = x.match(IMPORT_PATH_RE);
+				if (!match) {
 					return;
 				}
 
 				imports.push({
-					filepath: stat[1],
-					dynamic: /[#{}\*]/.test(stat[1]),
-					css: /\.css$/.test(stat[1])
+					filepath: match[1],
+					dynamic: DYNAMIC_IMPORT_RE.test(match[1]),
+					css: CSS_IMPORT_RE.test(match[1])
 				});
 			});
 		} else if (token[0] === 'at-word') { // Mixins or Functions
