@@ -98,6 +98,9 @@ describe('Parser', () => {
 			{ filepath: 'foo', dynamic: false, css: false },
 			{ filepath: 'foo.css', dynamic: false, css: true },
 			{ filepath: 'foo', dynamic: false, css: false },
+			{ filepath: '//fonts.googleapis.com/css?family=Aguafina+Script', dynamic: true, css: false },
+			{ filepath: 'https://fonts.googleapis.com/css?family=Aguafina+Script', dynamic: true, css: false },
+			{ filepath: '//fonts.googleapis.com/css?family=Aguafina+Script', dynamic: true, css: false },
 			{ filepath: 'rounded-corners', dynamic: false, css: false },
 			{ filepath: 'text-shadow', dynamic: false, css: false },
 			{ filepath: '#{test}.scss', dynamic: true, css: false }

@@ -24,7 +24,7 @@ export type IFunction = IMixin;
 
 const IMPORT_PATH_SEPARATOR_RE = /,\s*/;
 const IMPORT_PATH_RE = /['"](.*)['"]/;
-const DYNAMIC_IMPORT_RE = /[#{}\*]/;
+const DYNAMIC_IMPORT_RE = /\/\/|[#{}\*]/;
 const CSS_IMPORT_RE = /\.css$/;
 
 const PARAMETER_SEPARATOR_RE = /([,;]\s*)(?=\$)/;

@@ -2,6 +2,9 @@
 @import "foo";
 @import "foo.css";
 @import "foo" screen;
+@import '//fonts.googleapis.com/css?family=Aguafina+Script';
 @import url(foo);
+@import url('https://fonts.googleapis.com/css?family=Aguafina+Script');
+@import url('//fonts.googleapis.com/css?family=Aguafina+Script');
 @import "rounded-corners", "text-shadow";
 @import "#{test}.scss";
