@@ -9,7 +9,7 @@
     "url": "canonium.com"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "main": "out/index.js",
   "typings": "out/index.d.ts",
@@ -28,7 +28,7 @@
     "imports"
   ],
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
     "tslint": "^5.4.3",
@@ -37,9 +37,9 @@
   },
   "scripts": {
     "clean": "rimraf out",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint \"src/**/*.ts\" -p . -t stylish",
     "compile": "tsc",
-    "test": "mocha out/**/*.spec.js",
+    "test": "mocha \"out/**/*.spec.js\" -s 0",
     "build": "npm run clean && npm run lint && npm run compile && npm test",
     "watch": "npm run clean && npm run lint && npm run compile -- --watch"
   }

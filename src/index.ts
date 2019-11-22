@@ -70,6 +70,7 @@ function parseSymbols(text: string) {
 	const imports: IImport[] = [];
 
 	let token;
+	let nextToken;
 	let pos = 0;
 
 	let offset = 0;
@@ -109,9 +110,10 @@ function parseSymbols(text: string) {
 				pos++;
 				while (pos < length) {
 					token = tokens[pos];
+					nextToken = tokens[pos + 1] || [];
 					if (token[0] === '{') {
 						break;
-					} else if (token[0] === ')' && tokens[pos + 1] && tokens[pos + 1] === ';') {
+					} else if (token[0] === ')' && nextToken[0] === ';') {
 						pos++;
 						break;
 					}

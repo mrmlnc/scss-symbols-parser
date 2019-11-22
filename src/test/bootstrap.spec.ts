@@ -6,68 +6,43 @@ import * as fs from 'fs';
 
 import { parseSymbols } from '../index';
 
+const BOOTSTRAP_DIRECTORY = './node_modules/bootstrap/scss';
+
 describe('Bootstrap', () => {
-
-	const dir = './node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
-
-	it('Files without symbols', () => {
-		let status = true;
-		const files = [];
-
-		fs.readdirSync(dir).filter((filename) => {
-			return !/mixins|forms|type|variables|theme/.test(filename);
-		}).forEach((filename) => {
-			const data = fs.readFileSync(path.join(dir, filename)).toString();
-			const symbols = parseSymbols(data);
-			if (symbols.imports.length !== 0 || symbols.mixins.length !== 0 || symbols.variables.length !== 0) {
-				status = false;
-				files.push(filename);
-			}
-		});
-
-		assert.ok(status, files.join());
-	});
-
 	it('Files with symbols', () => {
 		const expected = {
-			'_forms.scss': {
-				variables: 0,
-				mixins: 1,
-				imports: 0
+			'mixins/_border-radius.scss': {
+				imports: 0,
+				mixins: 9,
+				variables: 0
 			},
-			'_type.scss': {
-				variables: 0,
-				mixins: 1,
-				imports: 0
+			'mixins/_hover.scss': {
+				imports: 0,
+				mixins: 4,
+				variables: 0
 			},
 			'_mixins.scss': {
-				variables: 0,
+				imports: 32,
 				mixins: 0,
-				imports: 30
+				variables: 0
 			},
 			'_variables.scss': {
-				variables: 388,
+				imports: 0,
 				mixins: 0,
-				imports: 0
-			},
-			'_theme.scss': {
-				variables: 0,
-				mixins: 4,
-				imports: 2
+				variables: 659
 			}
 		};
 
 		const current = {};
 		const files = [
-			'_forms.scss',
-			'_type.scss',
+			'mixins/_border-radius.scss',
+			'mixins/_hover.scss',
 			'_mixins.scss',
-			'_variables.scss',
-			'_theme.scss'
+			'_variables.scss'
 		];
 
 		files.forEach((filename) => {
-			const data = fs.readFileSync(path.join(dir, filename)).toString();
+			const data = fs.readFileSync(path.join(BOOTSTRAP_DIRECTORY, filename)).toString();
 			const symbols = parseSymbols(data);
 
 			current[filename] = {
@@ -77,20 +52,20 @@ describe('Bootstrap', () => {
 			};
 		});
 
-		assert.deepEqual(expected, current);
+		assert.deepEqual(current, expected);
 	});
 
 	it('Mixins', () => {
 		let symbolsCount = 0;
 
-		fs.readdirSync(path.join(dir, 'mixins')).forEach((filename) => {
-			const data = fs.readFileSync(path.join(dir, 'mixins', filename)).toString();
+		fs.readdirSync(path.join(BOOTSTRAP_DIRECTORY, 'mixins')).forEach((filename) => {
+			const data = fs.readFileSync(path.join(BOOTSTRAP_DIRECTORY, 'mixins', filename)).toString();
 			const symbols = parseSymbols(data);
 
-			symbolsCount += symbols.imports.length + symbols.mixins.length + symbols.variables.length;
+			symbolsCount += symbols.mixins.length;
 		});
 
-		assert.equal(symbolsCount, 99);
+		assert.equal(symbolsCount, 69);
 	});
 
 });
