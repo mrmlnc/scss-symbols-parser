@@ -28,7 +28,7 @@
     "imports"
   ],
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
     "tslint": "^5.4.3",
