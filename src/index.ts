@@ -22,6 +22,8 @@ export interface IMixin {
 
 export type IFunction = IMixin;
 
+type Token = [string, string, number?];
+
 const IMPORT_PATH_SEPARATOR_RE = /,\s*/;
 const IMPORT_PATH_RE = /['"](.*)['"]/;
 const DYNAMIC_IMPORT_RE = /\/\/|[#{}\*]/;
@@ -61,8 +63,31 @@ function makeMixinParameters(text: string, offset): IVariable[] {
 	return variables;
 }
 
+function skipRulesets(tokens: Token[], token: Token, pos: number) {
+	let ruleset = 1;
+
+	while (pos < tokens.length) {
+		token = tokens[pos];
+
+		if (ruleset === 0) {
+			break;
+		} else if (token[0] === '{') {
+			ruleset++;
+		} else if (token[0] === '}') {
+			ruleset--;
+		}
+
+		pos++;
+	}
+
+	return {
+		token,
+		pos
+	};
+}
+
 function parseSymbols(text: string) {
-	const tokens = tokenizer(text);
+	const tokens: Token[] = tokenizer(text);
 
 	const variables: IVariable[] = [];
 	const mixins: IMixin[] = [];
@@ -158,9 +183,11 @@ function parseSymbols(text: string) {
 				params = `(${params})`;
 			}
 
-			while (token[0] === '{' && pos < length) {
-				token = tokens[pos];
-				pos++;
+			if (token[0] === '{') {
+				const info = skipRulesets(tokens, token, ++pos);
+
+				token = info.token;
+				pos = info.pos;
 			}
 
 			if (name) {
@@ -200,20 +227,10 @@ function parseSymbols(text: string) {
 				offset
 			});
 		} else if (token[0] === '{') { // Ruleset
-			let ruleset = 1;
+			const info = skipRulesets(tokens, token, ++pos);
 
-			pos++;
-			while (pos < length) {
-				token = tokens[pos];
-				if (ruleset === 0) {
-					break;
-				} else if (token[0] === '{') {
-					ruleset++;
-				} else if (token[0] === '}') {
-					ruleset--;
-				}
-				pos++;
-			}
+			token = info.token;
+			pos = info.pos;
 		}
 
 		pos++;

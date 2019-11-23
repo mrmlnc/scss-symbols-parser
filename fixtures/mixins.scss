@@ -22,3 +22,8 @@ c($a, $b,$c: rgba(0,0,0,0)) {
 
 	@include g();
 }
+
+@mixin f {
+	border-top: 0;
+	border-right: $a solid transparent;
+}

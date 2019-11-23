@@ -10,7 +10,7 @@ describe('Parser', () => {
 	it('Variables', () => {
 		const data = fs.readFileSync('./fixtures/variables.scss').toString();
 
-		const { variables } = parseSymbols(data);
+		const { variables, mixins, functions, imports } = parseSymbols(data);
 
 		const expected = [
 			{ name: '$a', value: '1', offset: 8 },
@@ -38,13 +38,16 @@ describe('Parser', () => {
 			}
 		];
 
-		assert.deepEqual(expected, variables);
+		assert.deepEqual(variables, expected);
+		assert.deepEqual(mixins, []);
+		assert.deepEqual(functions, []);
+		assert.deepEqual(imports, []);
 	});
 
 	it('Mixins', () => {
 		const data = fs.readFileSync('./fixtures/mixins.scss').toString();
 
-		const { mixins } = parseSymbols(data);
+		const { variables, mixins, functions, imports } = parseSymbols(data);
 
 		const expected = [
 			{ name: 'b', parameters: [], offset: 22 },
@@ -64,16 +67,24 @@ describe('Parser', () => {
 					{ name: '$a', value: '"{()}"', offset: 128 }
 				],
 				offset: 119
+			},
+			{
+				name: 'f',
+				parameters: [],
+				offset: 213
 			}
 		];
 
+		assert.deepEqual(variables, []);
 		assert.deepEqual(mixins, expected);
+		assert.deepEqual(functions, []);
+		assert.deepEqual(imports, []);
 	});
 
 	it('Functions', () => {
 		const data = fs.readFileSync('./fixtures/functions.scss').toString();
 
-		const { functions } = parseSymbols(data);
+		const { variables, mixins, functions, imports }= parseSymbols(data);
 
 		const expected = [
 			{
@@ -85,13 +96,16 @@ describe('Parser', () => {
 			}
 		];
 
+		assert.deepEqual(variables, []);
+		assert.deepEqual(mixins, []);
 		assert.deepEqual(functions, expected);
+		assert.deepEqual(imports, []);
 	});
 
 	it('Imports', () => {
 		const data = fs.readFileSync('./fixtures/imports.scss').toString();
 
-		const { imports } = parseSymbols(data);
+		const { variables, mixins, functions, imports }= parseSymbols(data);
 
 		const expected = [
 			{ filepath: 'foo.scss', dynamic: false, css: false },
@@ -106,6 +120,9 @@ describe('Parser', () => {
 			{ filepath: '#{test}.scss', dynamic: true, css: false }
 		];
 
+		assert.deepEqual(variables, []);
+		assert.deepEqual(mixins, []);
+		assert.deepEqual(functions, []);
 		assert.deepEqual(imports, expected);
 	});
 
